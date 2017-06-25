@@ -6,11 +6,14 @@
 #define GAME_HUMANPLAYER_H
 
 
+#include "Player.h"
 
-class HumanPlayer {
+class HumanPlayer : public Player {
+public:
+    HumanPlayer(const int number);
 
+    int play(const int *board) override;
 };
-
 
 
 #endif //GAME_HUMANPLAYER_H
