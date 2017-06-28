@@ -7,7 +7,7 @@
 
 
 #include "Player.h"
-#include "utils/State.h"
+#include "../Utils/State.h"
 
 class ComputerPlayer : public Player {
 public:

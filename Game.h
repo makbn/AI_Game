@@ -6,7 +6,7 @@
 #define GAME_GAME_H
 
 
-#include "Player.h"
+#include "Players/Player.h"
 #include "Board.h"
 
 class Game {
@@ -18,6 +18,7 @@ public:
     int *getScores() const;
 
     int start();
+    int start(Socket *s,int myTurnNumber);
 
 private:
     const int n;
@@ -28,6 +29,8 @@ private:
 
     bool isFinished();
     int winner();
+
+    void sendMyAction(Socket *s, int move);
 };
 
 

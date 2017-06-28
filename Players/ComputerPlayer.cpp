@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <tuple>
 #include "ComputerPlayer.h"
-#include "utils/State.h"
+#include "../Utils/State.h"
 
 using namespace std;
 

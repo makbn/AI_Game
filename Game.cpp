@@ -39,6 +39,10 @@ int *Game::getScores() const {
 }
 
 int Game::start() {
+    return start(nullptr, -1);
+}
+
+int Game::start(Socket *s, int myTurnNumber) {
     for (int i = 0; i < n; i++)
         if (players[i] == nullptr)
             return -1;
@@ -56,9 +60,11 @@ int Game::start() {
         int move = -1;
         while (move < turn * 7 || move >= (turn + 1) * 7 || board->getBoard()[move] == 0)
             move = players[turn]->play(board->getBoard());
+        if(s != nullptr && turn == myTurnNumber)
+            sendMyAction(s, move);
+
         int pos = board->play(move);
         board->update(scores);
-
         // In case this player's turn ends in opponents' box:
         if (pos / 7 != turn && board->getBoard()[pos] == 0) {
             scores[pos / 7] -= 4;
@@ -73,7 +79,7 @@ int Game::start() {
 }
 
 bool Game::isFinished() {
-    bool flag = true;
+    bool flag;
     for (int i = 0; i < n; i++) {
         flag = true;
         for (int j = i * 7; j < (i + 1) * 7; j++)
@@ -98,4 +104,10 @@ int Game::winner() {
             out = i;
         }
     return out;
+}
+
+void Game::sendMyAction(Socket *s, int move) {
+    char *str = new char[16];
+    snprintf(str, 16, "%d", move);
+    s->socketSend(str);
 }

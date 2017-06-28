@@ -6,7 +6,8 @@
 #define GAME_PLAYER_H
 
 
-#include "Board.h"
+#include "../Board.h"
+#include "../Utils/SocketClient.cpp"
 
 class Player {
 public:
