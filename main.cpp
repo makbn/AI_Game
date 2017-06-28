@@ -43,7 +43,7 @@ int getMyNumber(Socket *s){
 
 int main() {
     Game game;
-    Socket *socket=connectToServer("localhost",3000);
+    Socket *socket=connectToServer("172.21.44.241",8080);
     int myNumber=getMyNumber(socket);
     int enemyNumber=1-myNumber;
     if(myNumber==-1){

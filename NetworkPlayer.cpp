@@ -15,15 +15,15 @@ NetworkPlayer::NetworkPlayer(const int number, Socket *s) : Player(number) {
 
 int NetworkPlayer::play(const int *board) {
     int move = 0;
-    char *iStraem = new char[1];
-    iStraem[0] = 0;
+    char *iStream = new char[1];
+    iStream[0] = 0;
     cout << "trying to get move";
-    while (strlen(iStraem) < 1) {
+    while (strlen(iStream) < 1) {
         cout << ".";
-        iStraem = socket->socketReceive();
+        iStream = socket->socketReceive();
     }
-    if (strlen(iStraem) > 0) {
-        move = iStraem[0] - '0';
+    if (strlen(iStream) > 0) {
+        move = iStream[0] - '0';
         cout << "move :" << move << endl;
     }
     return move - 1;
