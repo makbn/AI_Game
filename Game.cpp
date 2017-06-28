@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Game.h"
 
+
 using namespace std;
 
 Game::Game() : n(2) {
@@ -34,7 +35,7 @@ bool Game::addPlayer(Player *p, int number) {
         return false;
 }
 
-int Game::start() {
+int Game::start(Socket *s,int myTurnNumber) {
     for (int i = 0; i < n; i++)
         if (players[i] == nullptr)
             return -1;
@@ -54,7 +55,9 @@ int Game::start() {
             move = players[turn]->play(board->getBoard());
         int pos = board->play(move);
         board->update(scores);
-
+        if(turn==myTurnNumber){
+            sendMyAction(s,move);
+        }
         // In case this player's turn ends in opponents' box:
         if (pos / 7 != turn && board->getBoard()[pos] == 0) {
             scores[pos / 7] -= 4;
@@ -88,4 +91,10 @@ int Game::winner() {
             out = i;
         }
     return out;
+}
+
+void Game::sendMyAction(Socket *s,int move) {
+    char* str = (char *) malloc(16);
+    snprintf(str, 16, "%d", move);
+    s->socketSend(str);
 }

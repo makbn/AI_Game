@@ -8,6 +8,7 @@
 
 #include "Player.h"
 #include "Board.h"
+#include "socketClient.cpp"
 
 class Game {
 public:
@@ -15,7 +16,7 @@ public:
     virtual ~Game();
     bool addPlayer(Player *p, int number);
 
-    int start();
+    int start(Socket *s,int myTurnNumber);
 
 private:
     const int n;
@@ -26,6 +27,8 @@ private:
 
     bool isFinished();
     int winner();
+
+    void sendMyAction(Socket *s,int move);
 };
 
 
