@@ -10,13 +10,14 @@
 
 class Player {
 public:
-    Player(const int number);
+    Player(const int *scores, const int number);
 
     virtual int play(const int *board) = 0;
 
 protected:
     const int n;
     const int number;
+    const int *const scores;
 };
 
 

@@ -10,7 +10,7 @@
 
 class HumanPlayer : public Player {
 public:
-    HumanPlayer(const int number);
+    HumanPlayer(const int *const scores, const int number);
 
     int play(const int *board) override;
 };

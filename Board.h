@@ -9,6 +9,9 @@
 class Board {
 public:
     Board();
+    Board(const int *board);
+    Board(const Board *board);
+
     virtual ~Board();
 
     const int *getBoard() const;
@@ -16,7 +19,7 @@ public:
     int play(int box);
     void update(int *score);
 
-    void print();
+    void print() const;
 
 private:
     const int n;

@@ -7,7 +7,7 @@
 
 using namespace std;
 
-HumanPlayer::HumanPlayer(const int number) : Player(number) {}
+HumanPlayer::HumanPlayer(const int *const scores, const int number) : Player(scores, number) {}
 
 int HumanPlayer::play(const int *board) {
     int move;

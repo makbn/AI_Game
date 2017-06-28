@@ -13,6 +13,18 @@ Board::Board() : n(2) {
         board[i] = 4;
 }
 
+Board::Board(const int *board) : n(2) {
+    this->board = new int[n * 7];
+    for (int i = 0; i < n * 7; i++)
+        this->board[i] = board[i];
+}
+
+Board::Board(const Board *board) : n(2) {
+    this->board = new int[n * 7];
+    for (int i = 0; i < n * 7; i++)
+        this->board[i] = board->getBoard()[i];
+}
+
 Board::~Board() {
     delete[] board;
 }
@@ -48,7 +60,7 @@ void Board::update(int *score) {
     }
 }
 
-void Board::print() {
+void Board::print() const {
     // TODO: Modify for more than two players.
     cout << board[0];
     for (int i = 1; i < 7; i++)

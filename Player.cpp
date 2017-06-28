@@ -4,4 +4,4 @@
 
 #include "Player.h"
 
-Player::Player(const int number) : n(2), number(number) {}
+Player::Player(const int *scores, const int number) : n(2), scores(scores), number(number) {}

@@ -34,6 +34,10 @@ bool Game::addPlayer(Player *p, int number) {
         return false;
 }
 
+int *Game::getScores() const {
+    return scores;
+}
+
 int Game::start() {
     for (int i = 0; i < n; i++)
         if (players[i] == nullptr)
@@ -50,7 +54,7 @@ int Game::start() {
         board->print();
 
         int move = -1;
-        while (move < turn * 7 || move >= (turn + 1) * 7)
+        while (move < turn * 7 || move >= (turn + 1) * 7 || board->getBoard()[move] == 0)
             move = players[turn]->play(board->getBoard());
         int pos = board->play(move);
         board->update(scores);
@@ -69,10 +73,16 @@ int Game::start() {
 }
 
 bool Game::isFinished() {
-    for (int i = turn * 7; i < (turn + 1) * 7; i++)
-        if (board->getBoard()[i] != 0)
-            return false;
-    return true;
+    bool flag = true;
+    for (int i = 0; i < n; i++) {
+        flag = true;
+        for (int j = i * 7; j < (i + 1) * 7; j++)
+            if (board->getBoard()[j] != 0)
+                flag = false;
+        if (flag)
+            return true;
+    }
+    return false;
 }
 
 int Game::winner() {

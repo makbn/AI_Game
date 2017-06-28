@@ -15,6 +15,8 @@ public:
     virtual ~Game();
     bool addPlayer(Player *p, int number);
 
+    int *getScores() const;
+
     int start();
 
 private:
