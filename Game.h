@@ -8,7 +8,6 @@
 
 #include "Player.h"
 #include "Board.h"
-#include "socketClient.cpp"
 
 class Game {
 public:

@@ -2,7 +2,6 @@
 
 #include "Game.h"
 #include "HumanPlayer.h"
-#include "socketClient.cpp"
 #include "NetworkPlayer.h"
 
 
@@ -17,7 +16,6 @@ Socket * connectToServer(char *host, int port){
     }else{
         cout<<"WTF dude?i can't connect to server!let me try again^_^"<<endl<<"trying";
         for(int i=0;i<5 && !status;i++){
-            cout<<".";
             status = socket->socketConnect();
             if(status)
                 cout<<endl<<"connected!"<<endl;
@@ -33,7 +31,6 @@ int getMyNumber(Socket *s){
     iStraem[0]=0;
     cout<<"trying to get my turn";
     while (strlen(iStraem)<1){
-        cout<<".";
         iStraem=s->socketReceive();
     }
     if(strlen(iStraem)>0){
@@ -59,7 +56,7 @@ int main() {
     Player *player2 = new NetworkPlayer(enemyNumber,socket);
     game.addPlayer(player2, enemyNumber);
 
-    int winner = game.start();
+    int winner = game.start(socket,myNumber);
     cout << "The winner is: Player" << winner + 1 << endl;
     return 0;
 }

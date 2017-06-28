@@ -7,13 +7,17 @@
 
 
 #include "Player.h"
-#include "socketClient.cpp"
+
 
 class NetworkPlayer : public Player {
 public:
     NetworkPlayer(const int number,Socket *s);
 
+    NetworkPlayer(const int number);
+
     int play(const int *board) override;
+
+    Socket *socket;
 
 };
 

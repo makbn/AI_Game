@@ -7,6 +7,7 @@
 
 
 #include "Board.h"
+#include "socketClient.cpp"
 
 class Player {
 public:
