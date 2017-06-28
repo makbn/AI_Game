@@ -48,7 +48,7 @@ int getMyNumber(Socket *s){
 
 int main() {
     string ip = "172.21.44.241";
-    char *cip = nullptr;
+    char *cip = new char[16];
     strcpy(cip, ip.c_str());
     Socket *socket = connectToServer(cip, 8080);
     if (socket == nullptr) {
